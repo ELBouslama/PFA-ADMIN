@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">
+          Orders Table
+        </h4>
+      </div>
+      <div id="dataTable_filter" class="dataTables_filter">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"
+              ><i class="fa fa-search" aria-hidden="true"></i
+            ></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Search"
+            placeholder="Rechercher une ordre"
+            [(ngModel)]="searchString"
+          />
+        </div>
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <thead class="text-primary text-center">
+              <th>
+                Id
+              </th>
+              <th>
+                Client
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Prix
+              </th>
+              <th>
+                Statut
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders | filter: searchString" class="text-center">
+                <td>
+                  <h3><strong>{{order.id}}</strong></h3>
+                </td>
+                <td class="clientName" (click)="afficherUser(order.user)">
+                  {{order.user.name}}
+                </td>
+                <td>
+                  {{order.description}}
+                </td>
+                <td>
+                  {{order.amount}}
+                </td>
+                <td
+                  class="text-primary"
+                  [class.text-danger]="order.status === 'Refusée'"
+                  [class.text-success]="order.status === 'Payée'"
+                  [class.text-warning]="order.status === 'Autre'"
+                  [class.text-info]="order.status === 'Créé'"
+                >
+                  <strong>{{order.status}}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="row mx-2">
+        <div class="col">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a
+                  [class.disabled]="previousPage === null ? true : null"
+                  (click)="checkPreviousPage($event)"
+                  class="page-link"
+                  [routerLink]="['../orders']"
+                  [queryParams]="{ page: currentPage + -1 }"
+                  queryParamsHandling="merge"
+                  >Précedent</a
+                >
+              </li>
+
+              <li
+                class="page-item"
+                *ngFor="let page of tableIndexPage; let i = index"
+                [ngClass]="currentPage === i + 1 ? 'active' : ''"
+              >
+                <a
+                  [class.disabled]="i + 1 === currentPage ? true : null"
+                  (click)="check($event, i + 1)"
+                  class="page-link"
+                  [routerLink]="['../orders']"
+                  [queryParams]="{ page: i + 1 }"
+                  queryParamsHandling="merge"
+                >
+                  {{ i + 1 }}
+                </a>
+              </li>
+              <li class="page-item">
+                <a
+                  [class.disabled]="nextPage === null ? true : null"
+                  (click)="checkNextPage($event)"
+                  class="page-link"
+                  [routerLink]="['../orders']"
+                  [queryParams]="{ page: currentPage + 1 }"
+                  queryParamsHandling="merge"
+                  >Suivant</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <br />
+        <div style="color: #72777a" class="row-6 mt-2 mr-5">
+          De {{ startItem }}
+          à
+          {{ endItem }}
+          du total {{ totalItems }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

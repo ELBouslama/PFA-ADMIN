@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">
+          Packs Instagram Table
+          <a class="btn btn-primary a-btn-slide-text float-right mx-5" (click)="openAddDialog()">
+            <span class="glyphicon glyphicon-edit"></span>
+            Add
+          </a>
+        </h4>
+      </div>
+      <div class="card-body" *ngIf="packs && !errors">
+          <table class="table">
+            <thead class="text-primary text-center">
+              <th>
+                Id
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Details
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Prix
+              </th>
+              <th>
+                Actions
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pack of packs; let indexOfelement=index;" class="text-center">
+                <td>
+                  <h3><strong>{{indexOfelement+1}}</strong></h3>
+                </td>
+                <td>
+                  {{pack.name}}
+                </td>
+                <td>
+                  {{pack.details}}
+                </td>
+                <td>
+                  {{pack.description}}
+                </td>
+                <td>
+                  {{pack.prix}}
+                </td>
+                <td class="text-primary">
+                  <a href="javascript:void(0)" (click)="openUpdateDialog(pack)" class="btn btn-primary a-btn-slide-text mr-1">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <span><strong>Edit</strong></span>
+                  </a>
+                  <a href="javascript:void(0)" (click)="openDeleteDialog(pack.id)" class="btn btn-primary a-btn-slide-text ml-1">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                     <span><strong>Delete</strong></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div *ngIf="errors">
+        <h4><strong>{{errors.name}}</strong></h4>
+        <p>{{errors.message}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="dialog-container">
+
+  <p class="dialog-title" >Client informations</p>
+
+  <form [formGroup]="clientForm" class="row justify-content-center align-items-center scale-in-center mt-3 p-4">
+
+      <div class="col-6">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nom et Prénom</mat-label>
+            <input formControlName="name" matInput name="title" type="text" readonly/>
+          </mat-form-field>
+      </div>
+
+      <div class="col-6 mb-3">
+        <img id="img" [src]="image" width="200" alt="Client image" class="mb-2">
+      </div>
+
+      <div class="col-12 mb-3">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>E-mail</mat-label>
+          <input formControlName="email" matInput name="title" type="text" readonly/>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 mb-3">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Adresse</mat-label>
+          <input formControlName="address" matInput name="title" type="text" readonly/>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 mb-3">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Téléphone</mat-label>
+          <input formControlName="telNumber" matInput name="title" type="text" readonly/>
+        </mat-form-field>
+      </div>
+
+  </form>
+
+</div>

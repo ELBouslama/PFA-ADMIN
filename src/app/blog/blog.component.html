@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">
+          Video Table
+          <a class="btn btn-primary a-btn-slide-text float-right mx-5" (click)="openAddDialog()" style="width: 90px;">
+            <span class="glyphicon glyphicon-edit"></span>
+            Add
+          </a>
+        </h4>
+      </div>
+      <div id="dataTable_filter" class="dataTables_filter">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"
+              ><i class="fa fa-search" aria-hidden="true"></i
+            ></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Search"
+            placeholder="Recherche d'un video"
+            [(ngModel)]="searchString"
+          />
+        </div>
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <thead class="text-primary text-center">
+              <th>
+                Id
+              </th>
+              <th>
+                title
+              </th>
+              <th>
+                former
+              </th>
+              <th>
+                categorie
+              </th>
+              <th>
+                Date
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of articles | filter:searchString; let indexOfelement=index;" class="text-center">
+                <td>
+                  <h3><strong>{{indexOfelement+1}}</strong></h3>
+                </td>
+                <td>
+                  {{article.title}}
+                </td>
+                <td>
+                  <img [src]="baseURL + article.image" alt="" height="100">
+                </td>
+                <td style="max-width: 400px;">
+                  <p [innerHTML]="article.texte.substring(0,300) + ' ...'"></p>
+                </td>
+                <td class="text-primary" style="min-width: 200px;">
+                  <a href="javascript:void(0)" (click)="openUpdateDialog(article)" class="btn btn-primary a-btn-slide-text mr-1">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <span><strong>Edit</strong></span>
+                  </a>
+                  <a href="javascript:void(0)" (click)="openDeleteDialog(article.id)" class="btn btn-primary a-btn-slide-text ml-1">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                     <span><strong>Delete</strong></span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

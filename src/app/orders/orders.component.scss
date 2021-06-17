@@ -1,0 +1,37 @@
+.clientName {
+  cursor: pointer;
+  &:hover {
+    font-weight: 900;
+  }
+}
+
+a.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.dataTables_filter {
+  color: #313435;
+  float: right;
+}
+
+@media screen and (max-width: 767px) {
+  .dataTables_wrapper .dataTables_filter {
+    text-align: left;
+  }
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px solid rgba(0, 0, 0, 0.0625);
+  border-radius: 2px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  height: 35px;
+  font-size: 14px;
+  margin-left: 15px;
+  padding: 5px;
+  color: #72777a;
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}

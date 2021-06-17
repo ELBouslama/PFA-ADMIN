@@ -1,0 +1,95 @@
+<div class="dialog-container">
+
+  <p class="dialog-title" >Add a video to the dashboard</p>
+
+  <form [formGroup]="addForm" class="row justify-content-center align-items-center scale-in-center mt-3 p-4">
+
+      <div class="col-12">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>title</mat-label>
+            <input formControlName="title" matInput name="title" type="text" required/>
+          </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>former</mat-label>
+          <input formControlName="former" matInput name="former" type="text" required/>
+        </mat-form-field>
+    </div>
+
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>prix</mat-label>
+        <input formControlName="price" matInput name="price" type="number" required/>
+      </mat-form-field>
+  </div>
+
+  
+  <div class="col-12">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>categorie</mat-label>
+      <mat-select formControlName="categorie">
+        <mat-option [(value)]="selected">Parodentie</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  
+  <div class="col-12">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>nombre d'heures</mat-label>
+      <input formControlName="nbrHours" matInput name="nbrHours" type="number" required/>
+    </mat-form-field>
+</div>
+<div class="col-12">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>durée</mat-label>
+    <input formControlName="duration" matInput name="duration" type="number" required/>
+  </mat-form-field>
+</div>
+
+<div class="col-12">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>nombre de modules</mat-label>
+    <input formControlName="nbrModules" matInput name="nbrModules" type="number" required/>
+  </mat-form-field>
+</div>
+
+
+      <div class="col-12 mb-3">
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+        <mat-label>télécharger le poster</mat-label> <br>
+        <input  #file  type="file" (change)="preview(file.files)" required>
+        <img formControlName="imagePoster" id="img" *ngIf="done" [src]="imgURL" width="200" alt="Image preview..." accept="image/*" class="mb-2">
+      </div>
+
+      <div class="col-12 mb-3">
+        <span style="color:red;" *ngIf="messageThumb">{{messageThumb}}</span>
+        <mat-label>télécharger le thumbnail</mat-label> <br>
+        <input  #file1  type="file" (change)="previewThumb(file1.files)" required>
+        <img  formControlName="imageThumbnail" id="img" *ngIf="done1" [src]="imgURL2" width="200" alt="Image preview..." accept="image/*" class="mb-2">
+      </div>
+    
+      <div class="col-12 mb-3">
+        <quill-editor [styles]="{height: '200px'}" formControlName="description"></quill-editor>
+    </div>
+
+    <div class="col-12 mb-3">
+      <span style="color:red;" *ngIf="messageVideo">{{messageVideo}}</span>
+      <mat-label>télécharger le video du cour </mat-label> <br>
+      <input  #file2  type="file" (change)="previewVideo(file2.files)" required>
+      <video  id="vid" *ngIf="done2"  width="350" alt="Video preview ..." accept="video/*" class="mb-2" controls>
+        <source  formControlName="videoSrc" [src]="videoURL" type="video/mp4">
+      </video>
+    </div>
+
+      <div class="col-12" >
+        <button class="submit-btn full-width" (click)="add()" [disabled]="!addForm.valid">
+          Confirmer
+        </button>
+      </div>
+
+  </form>
+
+</div>

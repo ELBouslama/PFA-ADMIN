@@ -1,0 +1,22 @@
+
+
+<!-- if logged in-->
+<div class="wrapper" >
+  <div class="sidebar" data-color="white" data-active-color="danger">
+      <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+      <app-navbar></app-navbar>
+      <div class="content">
+          <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+  </div>
+</div>
+
+<!-- <div *ngIf=!loggedIn>
+  <app-login></app-login>
+</div> -->
+
+
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium"></ngx-spinner>
